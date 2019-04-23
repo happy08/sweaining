@@ -79,37 +79,30 @@ export default {
     }
   },
   created () {
-    var classid=this.$route.query.classid;
-    this.axios
-      .get('/products/')
-      .then(res => {
-        console.log(res.data);
-        this.items=res.data.data;
-        this.classid=classid==""||typeof(classid)=="undefined"?res.data.data[0].classid : this.$route.query.classid;
-        console.log(classid,this.$route.query.classid,this.classid);
-      })
-      .catch(error => {
-        this.errored = true
-      })
-      .finally(() => this.loading = false)
-
-    this.axios
-      .get('/produts_class/')
-      .then(res => {
-        console.log(res.data);
-        this.pcitems=res.data;
-      })
-      .catch(error => {
-        this.errored = true
-      })
-      .finally(() => this.loading = false)
-
+    this.init()
   },
   components: {
     navLink
   },
   methods:{
-    
+    async init() {
+      var classid=this.$route.query.classid;
+      await this.axios
+      .get('/produts_class/')
+      .then(res => {
+        console.log(res.data,classid);
+        this.pcitems=res.data;
+        this.classid=(classid==""||typeof(classid)=="undefined")?res.data[0].id : classid;
+        console.log(classid,res.data[0].id,this.classid);
+      })
+
+      await this.axios
+      .get('/products/')
+      .then(res => {
+        console.log(33,res.data);
+        this.items=res.data.data;
+      })
+    }
   }
 }
 </script>

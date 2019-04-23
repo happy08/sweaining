@@ -1,10 +1,14 @@
 <template>
   <div class="main">
-    <div class="banner" style="width:100%; height:460px">
-       <slider ref="slider" :options="options">
-          <slideritem v-for="(item,index) in someList" :key="index" :style="item.style">{{item.html}}</slideritem>
-          <div slot="loading">loading...</div>
-      </slider>
+    <div class="banner">
+ 
+        <swiper :options="swiperOption" >
+            <swiper-slide v-for='item of swiperList' :key="item.id">
+                <img :src="item.background" class="swiper-img">
+            </swiper-slide>
+            <div class="swiper-pagination"  slot="pagination"></div>
+        </swiper>
+ 
 
      <!-- <img src="../assets/images/b1.jpg"> -->
     </div>
@@ -60,10 +64,18 @@
           </div>
 
           <!-- Flicker照片 -->
-           <!-- <div class="height15"></div> 
-           <div class="flicker">
-             <iframe src="https://zh-tw.facebook.com/sweaining/" style="width:100%; height:500px; border:none;"></iframe>
-           </div> -->
+          <div class="height15"></div> 
+           <div class="flicker" id="nanogallery2" 
+           data-nanogallery2='{
+              "kind":                  "flickr",
+              "userID":                "44702621@N06",
+              "album":                 "none",
+              "thumbnailHeight":       150, "thumbnailWidth": 150,
+              "galleryDisplayMode":    "pagination",
+              "galleryMaxRows":        2,
+              "galleryPaginationMode": "numbers"
+            }'>
+            </div>
 
         </div> 
 
@@ -78,17 +90,31 @@
                </div>
                <div class="sto_r">
                   <h2> 思薇蜜 - 果凍美人館</h2> 
-                  <h2> 網路客服 :  0985586195</h2> 
-                  <h2> Line ID : 22434588</h2> 
+                  <h2> 網路客服 : {{phone}} </h2> 
+                  <h2> Line ID : {{lineID}}</h2> 
                </div>
              </div>
              <div class="s_items"> 
              <ul class="s_item">
-               <li v-for="(item) in stores" :key="item.id">
+               <swiper :options="swiperOption2" >
+                  <swiper-slide v-for='item of stores' :key="item.id">
+                      
+                  <li>
+                    <h1>{{item.myname}}</h1>
+                    <h4>{{item.tel}}</h4>
+                    <h4>{{item.address}}</h4>
+                  </li>
+                  
+                  </swiper-slide>
+
+                  <div class="swiper-pagination"  slot="pagination"></div>
+              </swiper>
+
+               <!-- <li v-for="(item) in stores" :key="item.id">
                  <h1>{{item.myname}}</h1>
                  <h4>{{item.tel}}</h4>
                  <h4>{{item.address}}</h4>
-               </li>
+               </li> -->
                <!-- <li>
                  <h1>仁和館</h1>
                  <h4>02-2921-3878</h4>
@@ -112,7 +138,10 @@
           <!-- facebook -->
            <div class="height15"></div> 
            <div class="facebook">
-             <iframe src="https://www.facebook.com/sweaining/posts/2265850676780096" style="width:100%; height:500px; border:none;"></iframe>
+             <iframe src="https://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fsweaining&amp;width=427px&amp;height=500&amp;colorscheme=light&amp;show_faces=true&amp;header=false&amp;stream=true&amp;show_border=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:500px;" allowTransparency="true"></iframe>
+            
+              <!-- <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fsweaining%2Fphotos%2Fa.378825392149310%2F1205625239469317%2F%3Ftype%3D3&width=500" style="width:100%; height:500px;border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+              <iframe target="_top" src="https://www.facebook.com/sweaining/posts/2265850676780096" style="width:100%; height:500px; border:none;"></iframe> -->
            </div>
            
         </div> 
@@ -124,10 +153,13 @@
 </template>
 
 <script>
-import { slider, slideritem } from 'vue-concise-slider'
+
+import {jquery} from '@/assets/js/jquery.min.js'
+
 import navLink from '../components/nav'
 export default {
   name: 'home',
+  props:['phone','lineID'],
   data () {
     return {
       news: [],
@@ -136,95 +168,124 @@ export default {
       stores:[],
       links:[],
       //msg:''
-      someList:[
-          // {
-          //   style: {
-          //     'background': 'url('+require('../assets/images/b1.jpg')+')'
-          //   }
-          // },
-          // {
-          //   style: {
-          //     'background': 'url('+require('../assets/images/b1.jpg')+')'
-          //   }
-          // },
-          // {
-          //   style: {
-          //     'background': 'url('+require('../assets/images/b1.jpg')+')'
-          //   }
-          // }
-      ],
-        //Slider configuration [obj]
-      options: {
-        currentPage: 0
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        autoplay: 3000,
+        loop: true,
       },
-       
+      swiperOption2: {
+        pagination: '.swiper-pagination',
+        autoplay: 3000,
+        loop: true,
+        slidesPerView: 2,
+      },
+      swiperList:[]
     }
   },
   created () {
-    this.axios
+
+
+      const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js';
+        document.head.appendChild(s);
+
+      const s2 = document.createElement('script');
+        s2.type = 'text/javascript';
+        s2.src = 'https://unpkg.com/nanogallery2@2.4.1/dist/jquery.nanogallery2.min.js';
+        document.head.appendChild(s2);
+
+     this.init();
+        //141035746@N03   注idgettr.com中查找userID
+        
+    },
+    mounted(){
+      
+
+        this.aa();
+    },
+  methods: {
+      aa(){ //alert($);
+      //  $("#nanoGallery2").nanoGallery({
+      //   userID:'148527782@N04',
+      //   kind:'flickr',
+      //   thumbnailWidth:370,
+      //   thumbnailHeight:250, //圖片區塊寬高
+      //   viewerDisplayLogo:true,
+      //   thumbnailGutterWidth:27,//圖片區塊左右間距
+      //   thumbnailGutterHeight:27,//圖片區塊上下間距
+      //   locationHash:false,
+      //   //photoset:'72157594299597591',
+      //   //photoset:'199635163541d27f',
+      //   //thumbnailDisplayInterval:0,
+      //   //thumbnailDisplayTransition:false,
+      //   paginationMaxLinesPerPage:2,//產生頁碼 X排會換頁
+      //   paginationDots : true,
+      //   thumbnailHoverEffect:[{'name':'imageScale150','duration':400},{'name':'borderDarker'}],
+      //   thumbnailLabel:{display:true,position:'overImageOnBottom',descriptionMaxLength:20,hideIcons:true},
+      //   theme:'clean',
+      //   //colorScheme: myColorScheme
+      //   });
+
+       
+      } ,
+      async init() {
+
+        await this.axios
       .get('/index_news/')
       .then(res => {
         //console.log(res.data);
         this.news=res.data.data;
       })
-      .catch(error => {
-        this.errored = true
-      })
-      .finally(() => this.loading = false)
 
-     this.axios
+     await this.axios
       .get('/index_banner')
       .then(res => {
-       // console.log('index_banner',res.data);
-        // this.someList=res.data;
-        var a={};
-        var data=res.data;
-         //console.log('data',res.data)
-        for(var i=0; i<data.length; i++){
-          a.style=data[i];
-           this.someList.push(a);
-        }
-       // console.log(22,this.someList)
+       this.swiperList=res.data;
+       console.log(this.someList)
       })
 
-
-     this.axios
+     await this.axios
       .get('/index_events')
       .then(res => {
         //console.log('index_events',res.data);
         this.events=res.data.data
       })
 
-     this.axios
+     await this.axios
       .get('/index_products')
       .then(res => {
         //console.log(res.data);
         this.products=res.data.data
       })
 
-     this.axios
+     await this.axios
       .get('/index_stores')
       .then(res => {
         //console.log('stores',res.data);
         this.stores=res.data.data
       })
-     this.axios
+     await this.axios
       .get('/index_links')
       .then(res => {
         //console.log(res.data);
         this.links=res.data.data
       })
-    
+      .catch(error => {
+        this.errored = true
+      })
+      .finally(() => this.bus.$emit('loading', false))
+    }
   },
   components: {
-    navLink,
-    slider,
-    slideritem
+    navLink
   }
 }
 </script>
 
 <style scoped>
+@import "https://unpkg.com/nanogallery2@2.4.1/dist/css/nanogallery2.min.css";
+
 .height15{height: 15px;}
 .row{ margin:0 -7.5px}
 .col-6{width: 50%; padding:0 7.5px; float: left;}
@@ -244,19 +305,33 @@ white-space: nowrap; padding: 0 20px 0 20px;display: block; cursor: pointer; lin
 
 .stores{background: #0791bf;border-radius: 10px;padding: 10px;  overflow: hidden;}
 .stores .title{ color:#fff;}
-.sto_l{ width: 150px; float: left; text-align: center;}
-.sto_l h1{ font-size: 30px; }
+.sto_l{ width: 30%; float: left; text-align: center;}
+.sto_l h1{ font-size: 23px; }
 
-.sto_r{ margin-left: 150px;  }
+.sto_r{ margin-left: 35%;  }
 .sto_r h2{ font-size: 22px; margin:10px 0; font-weight: 100; }
 .s_items {width: 100%;border-radius: 3px;  overflow: auto;}
-.s_item {width: 1000%; }
-.s_item li{width: 190px;margin:0px 10px 5px 0 ; border-radius: 3px;  background: #fff; padding: 5px 10px; color: #cc6699; float: left;}
+.s_item { }
+.s_item li{width: 96%;margin:0px 5px 5px 5px ;min-height: 165px;  border-radius: 3px;  background: #fff; padding: 5px 10px; color: #cc6699; float: left;}
 .s_item li h1{ text-align: center }
 
 .events{ }
 .events a{display: block; margin-bottom: 15px; position: relative; border-radius: 10px; overflow: hidden; line-height: 0; padding: 5px; border:solid 1px #cc6699;}
 .events a p.title{ position: absolute; bottom: 0;line-height: 1; left: 0; font-size: 25px; text-align: center; width: 100%; background: rgba(255,255,255,.5); padding: 10px 5px;}
 
+.swiper-pagination-bullet-active{
+  background:#fff;
+}
+.wrapper{
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: 30.48%;
+    background: #ccc;
+}
+.swiper-img{
+  width: 100%;
+}
 
+.flicker{width: 100%; height: 325px; overflow-x: hidden !important; overflow-y: auto !important;}
 </style>

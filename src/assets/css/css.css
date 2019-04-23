@@ -20,7 +20,7 @@ h5{font-size: 16px;}
 .text-center{ text-align: center; }
 .text-right{ text-align: right; }
 
-.main{max-width: 900px;margin: 0 auto;}
+.main,footer{max-width: 900px;margin: 0 auto;}
 header{background: #fff;padding: 10px 0;}
 .header{display:flex;align-items: flex-end; justify-content:space-between}
 .logo{max-width: 200px}
@@ -33,7 +33,7 @@ nav a:hover{background: #b25db2;color: #fff;}
 nav a img{ width: 35px;}
 .banner{margin-top:5px;}
 
-.container{padding: 15px; background: rgba(255,255,255,.8);}
+.container{padding: 15px; min-height: 450px; background: rgba(255,255,255,.8);}
 
 
 
