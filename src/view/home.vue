@@ -20,7 +20,12 @@
             <h1>最新消息<img src="../assets/images/date.png" width="35px"></h1>
             <ul>
               <li v-for="(item) in news" :key="item.id">
-                <router-link class="title" :to="{path:'/news/?id='+item.id, append:'true'}">{{item.title}}</router-link>
+                <template v-if="item.link == '' || item.link == null ">
+                  <router-link class="title" :to="{path:'/news/?id='+item.id, append:'true'}">{{item.link}}{{item.title}}</router-link>
+                </template>
+                <template v-else>
+                  <a class="title" :href="item.link"> {{item.title}}</a> 
+                </template>
                 <span class="time">{{item.mytime}}</span>
               </li>
               <!-- 
@@ -32,10 +37,11 @@
           </div>
           <!-- 行銷活動 -->
           <div class="height15"></div> 
+          <h3 class="t">我要下單</h3>
           <div class="events">
             <div class="row">
               <div class="col-6" v-for="(item) in events" :key="item.id">
-                <router-link :to="{path:'/events/?id='+item.id}"><img :src="item.image1" ></router-link>
+                <router-link :to="{path:'/events_detail/?id='+item.id}"><img :src="item.image1" ></router-link>
               </div>
               <!-- <div class="col-6">
                 <a href=""> <img src="../assets/images/p1.jpg" ></a>
@@ -46,6 +52,7 @@
 
           <!-- 最新產品 -->
           <!-- <div class="height15"></div>  -->
+          <h3 class="t">產品介紹</h3>
           <div class="events">
             <div class="row">
               <div class="col-6" v-for="(item) in products" :key="item.id">
@@ -65,7 +72,11 @@
 
           <!-- Flicker照片 -->
           <div class="height15"></div> 
-           <div class="flicker" id="nanogallery2" 
+            <iframe height="242" width="100%" :src='youtube' frameborder="0" allowfullscreen></iframe>
+
+
+
+           <!-- <div class="flicker" id="nanogallery2" 
            data-nanogallery2='{
               "kind":                  "flickr",
               "userID":                "44702621@N06",
@@ -75,7 +86,7 @@
               "galleryMaxRows":        2,
               "galleryPaginationMode": "numbers"
             }'>
-            </div>
+            </div> -->
 
         </div> 
 
@@ -159,7 +170,7 @@ import {jquery} from '@/assets/js/jquery.min.js'
 import navLink from '../components/nav'
 export default {
   name: 'home',
-  props:['phone','lineID'],
+  props:['phone','lineID','youtube'],
   data () {
     return {
       news: [],
@@ -185,7 +196,7 @@ export default {
   created () {
 
 
-      const s = document.createElement('script');
+    /*   const s = document.createElement('script');
         s.type = 'text/javascript';
         s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js';
         document.head.appendChild(s);
@@ -193,42 +204,17 @@ export default {
       const s2 = document.createElement('script');
         s2.type = 'text/javascript';
         s2.src = 'https://unpkg.com/nanogallery2@2.4.1/dist/jquery.nanogallery2.min.js';
-        document.head.appendChild(s2);
+        document.head.appendChild(s2); */
 
      this.init();
         //141035746@N03   注idgettr.com中查找userID
         
     },
     mounted(){
-      
-
-        this.aa();
+  
     },
   methods: {
-      aa(){ //alert($);
-      //  $("#nanoGallery2").nanoGallery({
-      //   userID:'148527782@N04',
-      //   kind:'flickr',
-      //   thumbnailWidth:370,
-      //   thumbnailHeight:250, //圖片區塊寬高
-      //   viewerDisplayLogo:true,
-      //   thumbnailGutterWidth:27,//圖片區塊左右間距
-      //   thumbnailGutterHeight:27,//圖片區塊上下間距
-      //   locationHash:false,
-      //   //photoset:'72157594299597591',
-      //   //photoset:'199635163541d27f',
-      //   //thumbnailDisplayInterval:0,
-      //   //thumbnailDisplayTransition:false,
-      //   paginationMaxLinesPerPage:2,//產生頁碼 X排會換頁
-      //   paginationDots : true,
-      //   thumbnailHoverEffect:[{'name':'imageScale150','duration':400},{'name':'borderDarker'}],
-      //   thumbnailLabel:{display:true,position:'overImageOnBottom',descriptionMaxLength:20,hideIcons:true},
-      //   theme:'clean',
-      //   //colorScheme: myColorScheme
-      //   });
-
        
-      } ,
       async init() {
 
         await this.axios
@@ -284,9 +270,10 @@ export default {
 </script>
 
 <style scoped>
-@import "https://unpkg.com/nanogallery2@2.4.1/dist/css/nanogallery2.min.css";
-
+/* @import "https://unpkg.com/nanogallery2@2.4.1/dist/css/nanogallery2.min.css";
+ */
 .height15{height: 15px;}
+h3.t{color: #cc6699}
 .row{ margin:0 -7.5px}
 .col-6{width: 50%; padding:0 7.5px; float: left;}
 .news{border:solid 1px #cc6699; border-radius: 10px; padding: 20px 15px 15px 15px; background: #fff;}

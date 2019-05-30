@@ -12,7 +12,7 @@
       </div>
     </header> 
     <transition name="slide-fade">
-      <router-view v-bind:phone="seo.phone" v-bind:lineID="seo.lineID" />  
+      <router-view v-bind:phone="seo.phone" v-bind:lineID="seo.lineID" v-bind:youtube="seo.qq" />  
     </transition>
     
     <loading></loading> 
@@ -46,7 +46,6 @@ export default {
         console.log(res.data);
         this.seo=res.data;       
       })
-     
   },
  mounted() {
    // this.bus.$emit('loading', true);

@@ -7,10 +7,15 @@
     <div class="container">
       <ul class="news">
         <li v-for="(item,index) in news" :key="item.id" :class="(item.id == show ?'cur':'')">
-          <div class="title" @click="toggleCur(item.id)"> {{item.title}} <span>{{item.mytime}}</span></div> 
-          <div class="content" v-html="item.mycontent">
-            
-          </div> 
+          <template v-if="item.link == '' || item.link == null ">
+            <div class="title" @click="toggleCur(item.id)"> {{item.title}} <span>{{item.mytime}}</span></div> 
+            <div class="content" v-html="item.mycontent">
+            </div> 
+          </template>
+          <template v-else>
+            <a class="title" :href="item.link"> {{item.title}} <span>{{item.mytime}}</span></a> 
+          </template>
+
         </li>
         <!-- <li :class="[2 == show ?'cur':'']">
           <div class="title" @click="toggleCur(2)">春節休館時間公告，請美人不要忘記預約新課程 <span>2019-01-30</span></div> 
@@ -66,7 +71,7 @@ export default {
 
 <style scoped>
 .news li{ margin:30px 30px 10px 30px;}
-.title{position: relative; padding: 0 120px 0 30px; cursor: pointer; line-height: 1.2; font-size: 24px; color: #cc6699;}
+.title,.title a{display: block; position: relative; padding: 0 120px 0 30px; cursor: pointer; line-height: 1.2; font-size: 24px; color: #cc6699;}
 .title::before{transition:all 0.3s ease-out;
   position: absolute; left: 0; top: 50%; margin-top:-10px;
   content: "";

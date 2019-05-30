@@ -20,10 +20,10 @@
          <ul>
            <li v-for="(item,index) in items" :key="item.id" v-if="item.classid==classid">
               <div class="left">
-                <img :src="item.image1">
+                <router-link :to="{path:'/events'}"><img :src="item.image1" > </router-link>
               </div>
               <div class="right">
-                <h2>{{item.title}}</h2>
+                <h2><router-link :to="{path:'/events'}">{{item.title}}</router-link></h2>
                 <h4>{{item.title_en}}</h4>
                 <div class="t">簡介：</div>
                 {{item.mome}}  
@@ -116,7 +116,7 @@ export default {
  .left{width: 50%; padding-right: 25px; float: left;}
  .left img{border:solid 1px #ef7f92;border-radius: 5px; padding: 5px;}
  .right{width: 50%; float: right;}
- .right h2{color:#ef7f92; font-size: 30px;}
+ .right h2 a{color:#ef7f92; font-size: 30px;}
  .right h4{font-weight: 100;font-size: 20px; }
  .right .t{font-size: 20px; color:#ef7f92; margin:10px 0 5px 0; font-weight: 800;}
   .right .t .price{font-size:30px; font-weight: 800; color: #222;line-height: 1; }

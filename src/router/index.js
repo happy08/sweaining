@@ -4,6 +4,7 @@ import home from '@/view/home'
 import news from '@/view/news'
 import stores from '@/view/stores'
 import events from '@/view/events'
+import events_detail from '@/view/events_detail'
 import products from '@/view/products'
 import sweaining from '@/view/sweaining'
 
@@ -33,6 +34,11 @@ export default new Router({
       path: '/events',
       name: 'events',
       component: events
+    },
+    {
+      path: '/events_detail',
+      name: 'events_detail',
+      component: events_detail
     },
     {
       path: '/products',

@@ -1,0 +1,232 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<table>
+<tr>
+  <th>地區</th>
+  <th>暱稱</th>
+  <th>出價</th>
+  <th>編號</th>
+  <th>產品名稱</th>
+  <th>出價時間</th>
+  <th>起標價</th>
+  <th>人氣</th>
+  <th>拍賣場次</th>
+  <th>開始時間</th>
+  <th>結束時間</th>
+  <th>會員賬號</th>
+  <th>真實名字</th>
+  <th>暱稱</th>
+  <th>地址</th>
+  <th>LINE</th>
+  <th>消費</th>
+</tr>
+<tr>
+    <td>屏東縣</td>
+    <td>2暱稱</td>
+    <td>6100</td>
+    <td>11-005978</td>
+    <td>冬季北海五關綜合87位直孫男3</td>
+    <td>2019-04-21 21:27:56</td>
+    <td>3100</td>
+    <td>589</td>
+    <td>屏東陳少斌西翁拍賣會</td>
+    <td>2019-03-20 16:29:37</td>
+    <td>2019-05-02 16:29:42</td>
+    <td>091111111</td>
+    <td>真實姓名</td>
+    <td>22暱稱</td>
+    <td>新北市-雙溪區-地址2</td>
+    <td>Line ID2</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>屏東縣</td>
+    <td>2暱稱</td>
+    <td>4100</td>
+    <td>11-005978</td>
+    <td>冬季北海五關綜合87位直孫男3</td>
+    <td>2019-04-21 21:27:33</td>
+    <td>3100</td>
+    <td>589</td>
+    <td>屏東陳少斌西翁拍賣會</td>
+    <td>2019-03-20 16:29:37</td>
+    <td>2019-05-02 16:29:42</td>
+    <td>091111111</td>
+    <td>真實姓名</td>
+    <td>22暱稱</td>
+    <td>新北市-雙溪區-地址2</td>
+    <td>Line ID2</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>屏東縣</td>
+    <td>2暱稱</td>
+    <td>4000</td>
+    <td>17-005970</td>
+    <td>冬季北海五關綜合87位直孫男0</td>
+    <td>2019-04-21 22:16:55</td>
+    <td>1000</td>
+    <td>297</td>
+    <td>台灣台北拍賣會</td>
+    <td>2019-03-23 00:00:00</td>
+    <td>2019-05-02 21:21:30</td>
+    <td>091111111</td>
+    <td>真實姓名</td>
+    <td>22暱稱</td>
+    <td>新北市-雙溪區-地址2</td>
+    <td>Line ID2</td>
+    <td>0</td>
+</tr>
+</table>
+</body></html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="admin.css" rel="Stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="DatePicker/WdatePicker.js"></script>  <!--日期選擇-->
+
+</head>
+<style>
+ a{ color:#5dade2}
+</style>
+<body>
+<div class="content">
+<form action="?act=search" method="get" name="searchform" style="color:#006600;">
+
+拍賣場次
+<select  name="classid">
+<option value=''>......選擇.......</option>
+<option value="2" >台灣台北拍賣會</option><option value="1" >屏東陳少斌西翁拍賣會</option><option value="3" >台灣台北拍賣會2</option></select>
+
+
+地區<select  name="country">
+<option value=''>......選擇.......</option>
+  <option value="屏東縣" >屏東縣</option> </select>
+
+<!-- 產品名稱<select  name="pcname">
+<option value=''>......選擇.......</option>
+  <option value="冬季北海五關綜合87位直孫男0" >冬季北海五關綜合87位直孫男0</option>  <option value="冬季北海五關綜合87位直孫男3" >冬季北海五關綜合87位直孫男3</option></select>
+ 暱稱<select  name="aname">
+<option value=''>......選擇.......</option>
+  <option value="2暱稱" >2暱稱</option></select> -->
+出價日期
+ <input type="text" value="" name="start_createdate" onClick="WdatePicker({lang:'zh-tw',dateFmt:'yyyy-MM-dd'})"/> 
+ ~
+ <input type="text" value="" name="end_createdate" onClick="WdatePicker({lang:'zh-tw',dateFmt:'yyyy-MM-dd'})"/> 
+
+ 金額 
+ <input type="text" value="" name="sprice" style="width:50px"/> 
+ ~
+ <input type="text" value="" name="eprice" style="width:50px"/> 
+ 結鏢<select  name="end_time">
+<option value=''>......選擇.......</option>
+<option value="1" >已結鏢</option>
+<option value="2" >未結鏢</option>
+</select>  
+<input type="submit" class="bg" value="查詢！"  onclick="document.getElementById('searchform').target='_self';document.getElementById('act').value='search';return true;"/> 
+</form>
+<a href="?act=search2" class="bg"> 導出列表！ </a>
+
+<table border="0" cellpadding="5" cellspacing="0" bordercolorlight="#cccccc" bordercolordark="#FFFFFF">
+      <tr>
+        <th>地區</th>
+        <th>暱稱</th>
+        <th><a href="/backsite/main.php?act=search2&myorder=price"> 出價</a></th>
+        <th>編號</th>
+        <th>產品名稱</th>
+        <th><a href="/backsite/main.php?act=search2&myorder=createdate"> 出價時間</a></th>
+        <th>起標價</th>
+        <th><a href="/backsite/main.php?act=search2&myorder=hits"> 人氣</a></th>
+        <th>拍賣場次</th>
+        <th>開始時間</th>
+        <th>結束時間</th>
+        <th>會員賬號</th>
+        <th>真實名字</th>
+        <th>暱稱</th>
+        <th>地址</th>
+        <th>LINE</th>
+        <th><a href="/backsite/main.php?act=search2&Op_price=asc"> 消費</a></th>
+      </tr>
+      <tr  class='listtr'>
+			  <td>屏東縣</td>
+        <td>2暱稱</td>
+        <td>6100</td>
+        <td>11-005978</td>
+        <td>冬季北海五關綜合87位直孫男3</td>
+        <td>2019-04-21 21:27:56</td>
+        <td>3100</td>
+        <td>589</td>
+        <td>屏東陳少斌西翁拍賣會</td>
+        <td>2019-03-20 16:29:37</td>
+        <td>2019-05-02 16:29:42</td>
+        <td>091111111</td>
+        <td>真實姓名</td>
+        <td>22暱稱</td>
+        <td>新北市-雙溪區-地址2</td>
+        <td>Line ID2</td>
+        <td>0</td>
+      </tr>
+      <tr  class='listtr'>
+			  <td>屏東縣</td>
+        <td>2暱稱</td>
+        <td>4100</td>
+        <td>11-005978</td>
+        <td>冬季北海五關綜合87位直孫男3</td>
+        <td>2019-04-21 21:27:33</td>
+        <td>3100</td>
+        <td>589</td>
+        <td>屏東陳少斌西翁拍賣會</td>
+        <td>2019-03-20 16:29:37</td>
+        <td>2019-05-02 16:29:42</td>
+        <td>091111111</td>
+        <td>真實姓名</td>
+        <td>22暱稱</td>
+        <td>新北市-雙溪區-地址2</td>
+        <td>Line ID2</td>
+        <td>0</td>
+      </tr>
+      <tr  class='listtr'>
+			  <td>屏東縣</td>
+        <td>2暱稱</td>
+        <td>4000</td>
+        <td>17-005970</td>
+        <td>冬季北海五關綜合87位直孫男0</td>
+        <td>2019-04-21 22:16:55</td>
+        <td>1000</td>
+        <td>297</td>
+        <td>台灣台北拍賣會</td>
+        <td>2019-03-23 00:00:00</td>
+        <td>2019-05-02 21:21:30</td>
+        <td>091111111</td>
+        <td>真實姓名</td>
+        <td>22暱稱</td>
+        <td>新北市-雙溪區-地址2</td>
+        <td>Line ID2</td>
+        <td>0</td>
+      </tr>
+     <tr>
+        <td colspan="25">
+          <div class="pager">
+            <span class=disabled>页次:1/1</span>&nbsp;&nbsp;&nbsp;<span class=disabled>[首页]</span>&nbsp;&nbsp;<span class=disabled>[上一页]</span>&nbsp;&nbsp;<span class='current'> 1 </span>/&nbsp;&nbsp;<span class=disabled>[下一页]</span>&nbsp;&nbsp;<span class=disabled>[尾页]</span>&nbsp;          </div></td>
+      </tr> 
+    </table>
+
+<div style="font-size:16px; padding:20px 0 10px 0; text-align:center;color:#006600;">中標名單 &nbsp; 
+<a href="?act=search1" class="bg"> 導出列表！ </a>
+</div>
+ 
+    <table border="0" cellpadding="5" cellspacing="0" bordercolorlight="#cccccc" bordercolordark="#FFFFFF">
+      <tr>
+        <th>地區</th>
+        <th>賬號</th>
+        <th>暱稱</th>
+        <th>出價</th>
+        <th>產品名稱</th>
+        <th>出價時間</th>
+      </tr>
+ </table>
+</div>
+</body>
+</html>
