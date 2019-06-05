@@ -6,7 +6,8 @@
     <navLink></navLink>
     <div class="container">
       <ul class="stores">
-        <li v-for="(item,index) in lists" :key="item.id">
+        <li v-for="(item,index) in lists" :key="item.id" >
+          <a :href="'#/stores_detail/?id='+item.id">
           <div class="stores-l">
             <h2>{{item.title}}</h2>
             <h1>{{item.myname}}</h1>
@@ -35,6 +36,7 @@
                             
           </div>
           <div class="clear"></div>
+          </a>
         </li>
         <!-- <li>
           <div class="stores-l">
@@ -111,7 +113,7 @@ export default {
 .stores-l h1{padding-top: 30px; font-size: 50px; line-height: 1}
 .stores-l h2{font-size: 40px;line-height: 1}
 .stores-r{margin-left: 360px; font-size: 30px; }
-label{float: left; width: 95px;}
+label{float: left;}
 .content{margin-left: 95px;}
  @media (max-width: 900px){
 .stores-l{float: left; width: 260px; height: 226px; }

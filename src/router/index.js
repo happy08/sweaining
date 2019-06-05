@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import home from '@/view/home'
 import news from '@/view/news'
 import stores from '@/view/stores'
+import stores_detail from '@/view/stores_detail'
 import events from '@/view/events'
 import events_detail from '@/view/events_detail'
 import products from '@/view/products'
@@ -29,6 +30,11 @@ export default new Router({
       path: '/stores',
       name: 'stores',
       component: stores
+    },
+    {
+      path: '/stores_detail',
+      name: 'stores_detail',
+      component: stores_detail
     },
     {
       path: '/events',

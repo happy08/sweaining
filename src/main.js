@@ -12,7 +12,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import '@/assets/css/swiper.css'
 Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
-axios.defaults.baseURL = 'http://www.sweaining.com/';
+axios.defaults.baseURL = process.env.baseURL;//'http://www.sweaining.com/';
 Vue.prototype.axios = axios;
 Vue.prototype.qs = querystring;
 Vue.prototype.bus = new Vue();
